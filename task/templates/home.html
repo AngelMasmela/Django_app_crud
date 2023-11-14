@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main class="container py-5">
+    <section class="card card-body">
+        <h1 class="display-2 text-center">Django APP</h1>
+        <p> Django es un popular framework de desarrollo web en Python, conocido por su enfoque en la eficiencia y la legibilidad del código. Proporciona un conjunto robusto de herramientas y bibliotecas para simplificar la creación de aplicaciones web, desde la gestión de la base de datos hasta la implementación de la interfaz de usuario. Con su arquitectura basada en el modelo-vista-controlador (MVC), Django fomenta la separación de preocupaciones y facilita la escalabilidad de proyectos. Además, su énfasis en la seguridad y la facilidad de uso lo convierte en una elección popular tanto para desarrolladores principiantes como experimentados.</p>
+        {% if user.is_authenticated %}
+        <div class="text-center">
+            <a class="btn btn-danger" href="{% url 'task' %}">
+                Tareas Pendientes  
+            </a>
+            <a class="btn btn-secondary" href="{% url 'task_complete' %}">
+                Tareas Completadas
+            </a>
+        </div>
+        {% else %}
+        <div class="text-center">
+            <a class="btn btn-secondary" href="{% url 'signin' %}">
+                Inciar Sesión 
+            </a>
+            <a class="btn btn-dark" href="{% url 'signup' %}">
+                Registra Usuario
+            </a>
+        </div>
+        {% endif %}    
+    </section>
+</main>
+
+{% endblock %}

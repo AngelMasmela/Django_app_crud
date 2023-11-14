@@ -1,0 +1,32 @@
+{% extends 'base.html'  %}
+
+{% block content %}
+
+<main class="conteiner">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h1 class="text-center display-3 py-5">Tareas Pendientes</h1>
+            <ul class="list-group">
+                {% for task in task %}
+                    <a class="list-group-item list-group-item-action" href="{% url 'task_detail' task.id %}">
+                        
+                        <header class="d-flex justify-content-between">
+                            {% if task.important %}
+                                <h2 class="fw-bold text-primary">{{task.title}}</h2>
+                            {% else %}
+                                <h2 class="fw-bold">{{task.title}}</h2>
+                            {% endif %}
+                            <p>{{task.user.username}}</p>
+                        </header>
+                        <p>{{task.description}}</p>
+                        <p>{{task.datecomplete|date:'M j Y'}}</p>
+                        
+                    </a>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</main>
+
+{% endblock %}
+
